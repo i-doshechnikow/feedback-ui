@@ -1,31 +1,18 @@
 import { useState } from "react";
 import FeedbackItem from "./components/FeedbackItem";
 import Header from "./components/Header";
+import FeedbackData from "./data/FeedbackData";
 
 const App = () => {
-  const [feedback, setFeedback] = useState([
-    {
-      id: 1,
-      rating: 8,
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia odio suscipit adipisci est quidem ea delectus praesentium similique aperiam facere?",
-    },
-    {
-      id: 2,
-      rating: 7,
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia odio suscipit adipisci est quidem ea delectus praesentium similique aperiam facere?",
-    },
-    {
-      id: 3,
-      rating: 7,
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia odio suscipit adipisci est quidem ea delectus praesentium similique aperiam facere?",
-    },
-  ]);
+  const [feedback, setFeedback] = useState(FeedbackData);
   return (
     <>
       <Header text="feedback ui" />
       <div className="container">
         <h1>App</h1>
-        <FeedbackItem />
+        {feedback.map((el) => (
+          <FeedbackItem />
+        ))}
       </div>
     </>
   );
