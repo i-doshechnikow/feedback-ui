@@ -9,7 +9,7 @@ const App = () => {
     <>
       <Header text="feedback ui" />
       <div className="container">
-        <FeedbackList />
+        <FeedbackList feedback={feedback} />
       </div>
     </>
   );
