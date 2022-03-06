@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Card from "./shared/Card";
+import PropTypes from "prop-types";
 
 function FeedbackItem(props) {
   const {
@@ -6,11 +8,15 @@ function FeedbackItem(props) {
   } = props;
 
   return (
-    <div className="card">
+    <Card>
       <div className="num-display">{rating}</div>
       <div className="text-display">{text}</div>
-    </div>
+    </Card>
   );
 }
+
+FeedbackItem.propTypes = {
+  item: PropTypes.object.isRequired,
+};
 
 export default FeedbackItem;
