@@ -2,14 +2,14 @@ import FeedbackItem from "./FeedbackItem";
 import PropTypes from "prop-types";
 
 function FeedbackList(props) {
-  const { feedback } = props;
+  const { feedback, handleDelete } = props;
   if (!feedback || feedback.length === 0) {
     return <p>No data</p>;
   }
   return (
     <div className="feedback-list">
       {feedback.map((item, id) => (
-        <FeedbackItem key={id} item={item} />
+        <FeedbackItem key={id} item={item} handleDelete={handleDelete} />
       ))}
     </div>
   );
