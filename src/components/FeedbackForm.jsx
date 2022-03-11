@@ -4,6 +4,25 @@ import Card from "./shared/Card";
 
 function FeedbackForm() {
   const [text, setText] = useState("");
+  const [btnDisabled, setBtnDisabled] = useState(true);
+  const [message, setMessage] = useState("");
+
+  const handleTextChange = (event) => {
+    const eventValue = event.target.value;
+    if (eventValue === "") {
+      setBtnDisabled(true);
+      setMessage(null);
+    } else if (eventValue !== "" && eventValue.trim().length <= 10) {
+      setMessage("Text must be at least 10 characters");
+      setBtnDisabled(true);
+    } else {
+      setMessage(null);
+      setBtnDisabled(false);
+    }
+
+    setText(eventValue);
+  };
+
   return (
     <Card>
       <form>
@@ -12,13 +31,14 @@ function FeedbackForm() {
           <input
             type="text"
             placeholder="Write a review"
-            onChange={(event) => {
-              setText(event.target.value);
-            }}
+            onChange={handleTextChange}
             value={text}
           />
-          <Button type="submit">Send</Button>
+          <Button type="submit" isDisabled={btnDisabled}>
+            Send
+          </Button>
         </div>
+        {message && <div className="message">{message}</div>}
       </form>
     </Card>
   );
