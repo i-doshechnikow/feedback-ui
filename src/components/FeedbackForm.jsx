@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import RatingSelect from "./RatingSelect";
 import Button from "./shared/Button";
 import Card from "./shared/Card";
 
-function FeedbackForm() {
+function FeedbackForm({ handleAdd }) {
   const [text, setText] = useState("");
   const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -24,10 +25,23 @@ function FeedbackForm() {
 
     setText(eventValue);
   };
-
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (text.trim().length > 10) {
+      const newFeedback = {
+        text,
+        rating,
+        id: uuidv4(),
+      };
+      handleAdd(newFeedback);
+      setText("");
+      setRating(10);
+      setBtnDisabled(true);
+    }
+  };
   return (
     <Card>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2>How would you rate</h2>
         <RatingSelect
           select={(rating) => setRating(rating)}
