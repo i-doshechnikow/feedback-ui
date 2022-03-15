@@ -1,15 +1,10 @@
 import { createContext, useState } from "react";
+import FeedbackData from "../data/FeedbackData";
 
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({ children }) => {
-  const [feedback, setFeedback] = useState([
-    {
-      id: 1,
-      rating: 8,
-      text: "for context",
-    },
-  ]);
+  const [feedback, setFeedback] = useState(FeedbackData);
 
   const addFeedback = (newFeedback) => {
     setFeedback([newFeedback, ...feedback]);
