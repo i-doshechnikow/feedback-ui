@@ -25,26 +25,24 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="container">
-              <FeedbackForm handleAdd={addFeedback} />
-              <FeedbackStats feedback={feedback} />
-              <FeedbackList feedback={feedback} handleDelete={deleteFeedback} />
-            </div>
-          }
-        />
-        <Route
-          path="about"
-          element={
-            <div className="container">
-              <AboutPage />
-            </div>
-          }
-        />
-      </Routes>
+      <div className="container">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <FeedbackForm handleAdd={addFeedback} />
+                <FeedbackStats feedback={feedback} />
+                <FeedbackList
+                  feedback={feedback}
+                  handleDelete={deleteFeedback}
+                />
+              </>
+            }
+          />
+          <Route path="about" element={<AboutPage />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };
