@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AboutLinkIcon from "./components/AboutLinkIcon";
 
 import FeedbackForm from "./components/FeedbackForm";
 import FeedbackList from "./components/FeedbackList";
@@ -25,6 +26,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <Header />
       <div className="container">
         <Routes>
           <Route
@@ -43,6 +45,7 @@ const App = () => {
           <Route path="about" element={<AboutPage />} />
         </Routes>
       </div>
+      <AboutLinkIcon />
     </BrowserRouter>
   );
 };
