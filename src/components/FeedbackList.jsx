@@ -1,9 +1,11 @@
 import FeedbackItem from "./FeedbackItem";
-import PropTypes from "prop-types";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import FeedbackContext from "../context/FeedbackContext";
 
-function FeedbackList(props) {
-  const { feedback, handleDelete } = props;
+function FeedbackList() {
+  const context = useContext(FeedbackContext);
+  const { feedback, deleteFeedback } = context;
   if (!feedback || feedback.length === 0) {
     return <p>No data</p>;
   }
@@ -21,21 +23,11 @@ function FeedbackList(props) {
           }}
           key={id}
         >
-          <FeedbackItem item={item} handleDelete={handleDelete} />
+          <FeedbackItem item={item} handleDelete={deleteFeedback} />
         </motion.div>
       ))}
     </div>
   );
 }
-
-FeedbackList.propTypes = {
-  feedback: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-      text: PropTypes.string.isRequired,
-      rating: PropTypes.number.isRequired,
-    })
-  ),
-};
 
 export default FeedbackList;

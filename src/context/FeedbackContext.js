@@ -10,8 +10,21 @@ export const FeedbackProvider = ({ children }) => {
       text: "for context",
     },
   ]);
+
+  const addFeedback = (newFeedback) => {
+    setFeedback([newFeedback, ...feedback]);
+  };
+
+  const deleteFeedback = (id) => {
+    setFeedback(
+      feedback.filter((el) => {
+        return id !== el.id;
+      })
+    );
+  };
+
   return (
-    <FeedbackContext.Provider value={{ feedback }}>
+    <FeedbackContext.Provider value={{ feedback, addFeedback, deleteFeedback }}>
       {children}
     </FeedbackContext.Provider>
   );

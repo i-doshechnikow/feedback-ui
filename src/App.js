@@ -13,18 +13,6 @@ import AboutPage from "./pages/AboutPage";
 const App = () => {
   const [feedback, setFeedback] = useState(FeedbackData);
 
-  const deleteFeedback = (id) => {
-    setFeedback(
-      feedback.filter((el) => {
-        return id !== el.id;
-      })
-    );
-  };
-
-  const addFeedback = (newFeedback) => {
-    setFeedback([newFeedback, ...feedback]);
-  };
-
   return (
     <FeedbackProvider>
       <BrowserRouter>
@@ -35,12 +23,9 @@ const App = () => {
               path="/"
               element={
                 <>
-                  <FeedbackForm handleAdd={addFeedback} />
-                  <FeedbackStats feedback={feedback} />
-                  <FeedbackList
-                    feedback={feedback}
-                    handleDelete={deleteFeedback}
-                  />
+                  <FeedbackForm />
+                  <FeedbackStats />
+                  <FeedbackList />
                 </>
               }
             />
