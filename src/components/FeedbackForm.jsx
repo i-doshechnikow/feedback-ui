@@ -13,6 +13,7 @@ function FeedbackForm() {
     feedbackEdit: { edit, item },
     feedbackEdit,
     saveEditFeedback,
+    cancelEdit,
   } = context;
 
   useEffect(() => {
@@ -64,6 +65,13 @@ function FeedbackForm() {
     }
   };
 
+  const handleCancel = () => {
+    cancelEdit();
+    setText("");
+    setRating(10);
+    setBtnDisabled(true);
+  };
+
   return (
     <Card>
       <form onSubmit={handleSubmit}>
@@ -82,6 +90,16 @@ function FeedbackForm() {
           <Button type="submit" isDisabled={btnDisabled}>
             {edit ? "Update" : "Send"}
           </Button>
+          {edit && (
+            <Button
+              version="secondary"
+              handleClick={() => {
+                handleCancel();
+              }}
+            >
+              Cancel
+            </Button>
+          )}
         </div>
         {message && <div className="message">{message}</div>}
       </form>

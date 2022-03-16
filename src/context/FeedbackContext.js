@@ -24,6 +24,10 @@ export const FeedbackProvider = ({ children }) => {
     setFeedbackEdit({ item, edit: true });
   };
 
+  const cancelEdit = () => {
+    setFeedbackEdit({ item: {}, edit: false });
+  };
+
   const saveEditFeedback = (item) => {
     setFeedback(
       feedback.map((element) => {
@@ -45,6 +49,7 @@ export const FeedbackProvider = ({ children }) => {
         editFeedback,
         feedbackEdit,
         saveEditFeedback,
+        cancelEdit,
       }}
     >
       {children}

@@ -1,9 +1,14 @@
 import { isDisabled } from "@testing-library/user-event/dist/utils";
 import PropTypes from "prop-types";
 
-function Button({ children, version, isDisabled, type }) {
+function Button({ children, version, isDisabled, type, handleClick }) {
   return (
-    <button type={type} disabled={isDisabled} className={`btn btn-${version}`}>
+    <button
+      type={type}
+      disabled={isDisabled}
+      className={`btn btn-${version}`}
+      onClick={handleClick}
+    >
       {children}
     </button>
   );
