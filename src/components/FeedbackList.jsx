@@ -5,7 +5,7 @@ import FeedbackContext from "../context/FeedbackContext";
 
 function FeedbackList() {
   const context = useContext(FeedbackContext);
-  const { feedback, deleteFeedback } = context;
+  const { feedback } = context;
   if (!feedback || feedback.length === 0) {
     return <p>No data</p>;
   }
@@ -23,7 +23,7 @@ function FeedbackList() {
           }}
           key={id}
         >
-          <FeedbackItem item={item} handleDelete={deleteFeedback} />
+          <FeedbackItem item={item} />
         </motion.div>
       ))}
     </div>

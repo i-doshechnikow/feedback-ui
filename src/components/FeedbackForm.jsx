@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import FeedbackContext from "../context/FeedbackContext";
 import RatingSelect from "./RatingSelect";
@@ -7,7 +7,17 @@ import Card from "./shared/Card";
 
 function FeedbackForm() {
   const context = useContext(FeedbackContext);
-  const { addFeedback } = context;
+
+  const {
+    addFeedback,
+    feedbackEdit: { edit, item },
+  } = context;
+
+  // useEffect(() => {
+  //   console.log("hi hi hi");
+  //   if (edit) setText(item.text);
+  // }, [edit]);
+
   const [text, setText] = useState("");
   const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
