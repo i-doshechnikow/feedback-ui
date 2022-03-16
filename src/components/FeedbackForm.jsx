@@ -11,12 +11,17 @@ function FeedbackForm() {
   const {
     addFeedback,
     feedbackEdit: { edit, item },
+    feedbackEdit,
+    saveEditFeedback,
   } = context;
 
-  // useEffect(() => {
-  //   console.log("hi hi hi");
-  //   if (edit) setText(item.text);
-  // }, [edit]);
+  useEffect(() => {
+    if (edit) {
+      setBtnDisabled(false);
+      setText(item.text);
+      setRating(item.rating);
+    }
+  }, [feedbackEdit]);
 
   const [text, setText] = useState("");
   const [rating, setRating] = useState(10);
@@ -38,6 +43,7 @@ function FeedbackForm() {
 
     setText(eventValue);
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (text.trim().length > 10) {
@@ -46,12 +52,18 @@ function FeedbackForm() {
         rating,
         id: uuidv4(),
       };
-      addFeedback(newFeedback);
+
+      if (edit) {
+        saveEditFeedback({ id: item.id, rating, text });
+      } else {
+        addFeedback(newFeedback);
+      }
       setText("");
       setRating(10);
       setBtnDisabled(true);
     }
   };
+
   return (
     <Card>
       <form onSubmit={handleSubmit}>
@@ -68,7 +80,7 @@ function FeedbackForm() {
             value={text}
           />
           <Button type="submit" isDisabled={btnDisabled}>
-            Send
+            {edit ? "Update" : "Send"}
           </Button>
         </div>
         {message && <div className="message">{message}</div>}
